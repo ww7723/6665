@@ -1,0 +1,49 @@
+import random  
+import time  
+  
+# 定义游戏区域大小  
+WIDTH = 80  
+HEIGHT = 20  
+  
+# 定义目标类型和位置  
+TARGETS = [("man", 10, 10), ("woman", 30, 10), ("car", 50, 10)]  
+  
+# 定义子弹类型和速度  
+BULLETS = ["small_caliber", "medium_caliber", "large_caliber"]  
+BULLET_SPEED = [5, 10, 15]  
+  
+# 定义游戏参数  
+MAX_BULLETS = 10  
+MIN_BULLETS = 1  
+BULLET_COUNT = 10  
+  
+# 定义游戏主循环  
+def game_loop():  
+    # 初始化游戏状态  
+    bullet_list = []  
+    bullets = []  
+    score = 0  
+  
+    # 更新游戏状态  
+    while True:  
+        # 生成下一发子弹  
+        if len(bullet_list) < BULLET_COUNT:  
+            bullet = [bullet for bullet in bullet_list if bullet != "throwable"]  
+            if not bullet:  
+                bullet = random.choice(bullet_list)  
+            bullet_list.append(bullet)  
+            if bullet == "throwable":  
+                bullet_list.remove(bullet)  
+  
+        # 移动玩家  
+        x = random.randint(0, WIDTH - 1)  
+        y = random.randint(0, HEIGHT - 1)  
+        direction = random.choice(["right", "left", "down"])  
+        speed = random.choice([BULLET_SPEED[0], BULLET_SPEED[1], BULLET_SPEED[2]])  
+        player = [("player", x, y)]  
+        bullet = [("bullet", x, y)]  
+        player.append(bullet)  
+        bullet.append(bullet)  
+          
+        # 碰撞检测  
+        while player在主循环
